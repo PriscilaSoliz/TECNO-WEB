@@ -19,9 +19,9 @@ return [
     'commerce_id' => env('PAGOFACIL_COMMERCE_ID', 'd029fa3a95e174a19934857f535eb9427d967218a36ea014b70ad704bc6c8d1c'),
 
     // URLs de callback y retorno
-    'callback_url' => env('PAGOFACIL_CALLBACK_URL', env('APP_URL', 'https://confutable-unapproaching-merrill.ngrok-free.dev') . '/api/pagofacil/callback'),
+    'callback_url' => env('PAGOFACIL_CALLBACK_URL', env('APP_URL', 'https://tecnoweb.org.bo/inf513/grupo15sc/proyecto2/public') . '/api/pagofacil/callback'),
 
-    'return_url' => env('PAGOFACIL_RETURN_URL', env('APP_URL', 'https://confutable-unapproaching-merrill.ngrok-free.dev') . '/api/pagofacil/return'),
+    'return_url' => env('PAGOFACIL_RETURN_URL', env('APP_URL', 'https://tecnoweb.org.bo/inf513/grupo15sc/proyecto2/public') . '/api/pagofacil/return'),
 
     // Configuraciones adicionales
     'timeout' => env('PAGOFACIL_TIMEOUT', 60),

@@ -95,8 +95,9 @@ const verificarEstadoPago = async () => {
     console.log(`Polling intento ${pollingCount.value}/${maxPollingAttempts}`);
 
     try {
-        // Pasamos el ID como segundo parámetro para que se incruste en la URL
-const response = await axios.post(route('pagofacil.consultar-estado', transactionId.value));
+        const response = await axios.post(route('pagofacil.consultar-estado'), {
+            transaction_id: transactionId.value
+        });
 
         if (response.data.success) {
             const paymentData = response.data.data;
