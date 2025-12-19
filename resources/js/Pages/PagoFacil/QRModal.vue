@@ -35,6 +35,7 @@ const paymentStatus = ref(null);
 const pollingInterval = ref(null);
 const pollingCount = ref(0);
 const maxPollingAttempts = 15; // 50 * 6 segundos = 300 segundos = 5 minutos
+const paymentCompleted = ref(false); // Bandera para evitar múltiples notificaciones
 
 // Generar QR
 const generarQR = async () => {
@@ -126,7 +127,8 @@ const verificarEstadoPago = async () => {
                 // Status 1 SOLO si tiene fecha y hora de pago
                 ((status === 1 || status === '1') && hasPaymentDate);
 
-            if (isPaid) {
+            if (isPaid && !paymentCompleted.value) {
+                paymentCompleted.value = true; // Marcar como completado
                 console.log('¡Pago completado detectado!', paymentData);
                 detenerPolling();
 
@@ -186,6 +188,7 @@ const cerrar = () => {
     pagoId.value = null;
     error.value = null;
     paymentStatus.value = null;
+    paymentCompleted.value = false; // Resetear bandera
     emit('close');
 };
 

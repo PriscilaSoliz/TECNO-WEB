@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { useForm, router } from '@inertiajs/vue3';
 import AppLayout from '@/Layouts/AppLayout.vue';
 import DialogModal from '@/Components/DialogModal.vue';
@@ -13,6 +13,11 @@ import DangerButton from '@/Components/DangerButton.vue';
 const props = defineProps({
     users: Object,
     roles: Array,
+});
+
+// Filtrar roles para excluir 'encargadoalmacen'
+const filteredRoles = computed(() => {
+    return props.roles.filter(role => role.name !== 'encargadoalmacen');
 });
 
 const showingModal = ref(false);
@@ -210,7 +215,7 @@ const deleteUser = (user) => {
                         <select id="role" v-model="form.role"
                             class="mt-1 block w-full border-gray-300 dark:border-gray-700 dark:bg-gray-900 dark:text-gray-300 focus:border-indigo-500 dark:focus:border-indigo-600 focus:ring-indigo-500 dark:focus:ring-indigo-600 rounded-md shadow-sm">
                             <option value="">Seleccione un rol</option>
-                            <option v-for="role in roles" :value="role.name" :key="role.id">
+                            <option v-for="role in filteredRoles" :value="role.name" :key="role.id">
                                 {{ role.name }}
                             </option>
                         </select>
